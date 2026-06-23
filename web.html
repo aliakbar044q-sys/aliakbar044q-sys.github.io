@@ -1,0 +1,2059 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Akbar | Interactive Portofolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://jsdelivr.net" />
+
+    
+<style>
+
+/* ===================================================
+   1. GLOBAL RESET + DARK THEME
+   Mengatur tampilan dasar seluruh website
+=================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#0b0f19;
+    color:#e2e8f0;
+    /* Mencegah geser horizontal */
+    overflow-x:hidden;
+    /* Tinggi lebih stabil di HP */
+    min-height:100dvh;
+}
+
+/* Desktop */
+@media (min-width:769px){
+    body{
+        min-height:100vh;
+    }
+}
+
+/* ===================================================
+   2. TYPOGRAPHY
+   Heading & teks global
+=================================================== */
+
+h1{
+    font-size:2.5rem;
+    letter-spacing:2px;
+    color:#00ff66;
+    text-shadow:0 0 15px rgba(0,255,102,.3);
+}
+
+h2{
+    font-size:2rem;
+    color:#fff;
+    margin-bottom:30px;
+}
+
+h2 span{
+    color:#00f2fe;
+    font-family:'Share Tech Mono',monospace;
+}
+
+.subtitle{
+    color:#8a8a93;
+    font-size:.9rem;
+    line-height:1.7;
+    margin-bottom:50px;
+}
+
+/* ===================================================
+   3. NAVBAR
+   Navigasi Atas (Glassmorphism)
+=================================================== */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:20px 10%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(11,15,25,.8);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.05);
+    z-index:1000;
+}
+
+/* Logo Website */
+.logo{
+    font-family:'Share Tech Mono',monospace;
+    font-size:1.6rem;
+    font-weight:700;
+
+    color:#00f2fe;
+    text-shadow:0 0 10px rgba(0,242,254,.5);
+}
+
+/* Menu Navigasi */
+nav ul{
+    display:flex;
+    gap:35px;
+    list-style:none;
+    flex-wrap:wrap;
+}
+
+nav ul li{
+    margin:0;
+}
+
+/* Link Menu */
+nav ul li a{
+    color:#94a3b8;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-size:.95rem;
+    letter-spacing:1px;
+    cursor:pointer;
+    transition:color .3s ease;
+}
+
+/* Hover & Menu Aktif */
+nav ul li a:hover,
+nav ul li a.active-nav{
+    color:#00f2fe;
+}
+
+/* ===================================================
+   4. MAIN CONTENT
+   Area Konten Seluruh Halaman
+=================================================== */
+
+.main-content{
+    position:relative;
+    margin-top:70px;
+    min-height:calc(100dvh - 70px);
+    height:auto;
+}
+
+/* ===================================================
+   PAGE SYSTEM
+   Mengatur Pergantian Halaman
+=================================================== */
+
+.page{
+    display:none;
+    width:100%;
+    min-height:100%;
+    padding:24px 10% 70px;
+    overflow-y:visible;
+}
+
+/* Halaman aktif */
+.page.active{
+    display:block;
+    animation:pageTransition .6s ease forwards;
+}
+
+/* Animasi Transisi */
+@keyframes pageTransition{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.99);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* ===================================================
+   5. HERO SECTION
+   Halaman Home / Landing
+=================================================== */
+
+.hero{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    min-height:70vh;
+    flex-wrap:wrap;
+}
+
+/* Area Text Hero */
+.hero-text{
+    flex:1;
+    min-width:280px;
+}
+
+/* Judul Besar */
+.hero-text h1{
+    font-size:clamp(2.4rem,6vw,3.5rem);
+    font-weight:800;
+    line-height:1.2;
+    color:#fff;
+}
+
+/* Highlight nama */
+.hero-text h1 span{
+    color:#00f2fe;
+}
+
+/* Deskripsi */
+.hero-text p{
+    max-width:500px;
+    margin:12px 0 20px;
+    color:#94a3b8;
+    font-size:1.1rem;
+    line-height:1.8;
+}
+
+/* ===================================================
+   FOTO PROFIL HERO
+=================================================== */
+
+.img-wrapper{
+    position:relative;
+    width:280px;
+    height:280px;
+    flex-shrink:0;
+}
+
+/* Foto */
+.img-wrapper img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    border-radius:24px;
+    border:2px solid rgba(0,242,254,.3);
+    position:relative;
+    z-index:2;
+}
+
+/* Bingkai Neon Belakang */
+.img-wrapper::before{
+    content:'';
+    position:absolute;
+    top:-12px;
+    left:-12px;
+    width:100%;
+    height:100%;
+    border:2px solid #00f2fe;
+    border-radius:24px;
+    z-index:1;
+}
+
+/* ===================================================
+   RESPONSIVE MOBILE
+   Optimasi Tampilan HP
+=================================================== */
+
+@media (max-width:768px){
+
+    /* Navbar */
+    nav{
+        padding:16px 6%;
+    }
+
+    /* Konten */
+    .main-content{
+        margin-top:95px;
+    }
+
+    .page{
+        padding:30px 6%;
+    }
+
+    /* Hero */
+    .hero{
+        flex-direction:column-reverse;
+        text-align:center;
+        min-height:auto;
+    }
+
+    .hero-text h1{
+        font-size:2.3rem;
+    }
+
+    .hero-text p{
+        max-width:100%;
+        font-size:1rem;
+    }
+
+    /* Foto */
+    .img-wrapper{
+        width:220px;
+        height:220px;
+    }
+
+}
+/* ===================================================
+   5. SUB-TABS INTERN & MINI STATS
+   =================================================== */
+
+.home-tabs{
+    display:flex;
+    gap:12px;
+    margin:16px 0 12px;
+    flex-wrap:wrap;
+}
+
+.sub-tab-btn{
+background:rgba(255,255,255,.02);
+border:1px solid rgba(255,255,255,.08);
+color:#94a3b8;
+padding:10px 16px;
+border-radius:20px;
+cursor:pointer;
+font-size:.85rem;
+font-weight:600;
+transition:.3s;
+white-space:nowrap;
+}
+
+.sub-tab-btn:hover,
+.sub-tab-btn.active-sub{
+border-color:#00f2fe;
+color:#00f2fe;
+background:rgba(0,242,254,.05);
+box-shadow:0 0 10px rgba(0,242,254,.1);
+}
+
+.sub-content{
+display:none;
+animation:subFadeIn .4s ease forwards;
+}
+
+.sub-content.active-content{
+display:block;
+}
+
+@keyframes subFadeIn{
+from{
+opacity:0;
+transform:translateY(5px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+width:100%;
+max-width:600px;
+}
+
+.stat-box{
+background:#111827;
+padding:16px;
+border-radius:10px;
+border-left:3px solid #00f2fe;
+}
+
+.stat-box h4{
+font-size:1.2rem;
+color:#fff;
+font-family:'Share Tech Mono',monospace;
+}
+
+.stat-box p{
+font-size:.85rem;
+color:#94a3b8;
+margin-top:6px;
+}
+
+/* Pagination */
+
+.sub-page{
+display:none;
+}
+
+.sub-page.active-sub-page{
+display:block;
+animation:subPageFade .4s ease forwards;
+}
+
+@keyframes subPageFade{
+from{
+opacity:0;
+transform:translateY(15px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+.sub-pagination{
+display:flex;
+justify-content:center;
+gap:10px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+.sub-page-btn{
+background:#111827;
+border:1px solid rgba(255,255,255,.1);
+color:#94a3b8;
+width:38px;
+height:38px;
+border-radius:50%;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+}
+
+.sub-page-btn:hover,
+.sub-page-btn.active-btn{
+border-color:#00f2fe;
+color:#00f2fe;
+background:rgba(0,242,254,.08);
+}
+
+/* ===================================================
+   6. ABOUT & SKILLS
+   =================================================== */
+
+.about-grid{
+display:flex;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.about-card{
+background:#111827;
+padding:30px;
+border-radius:16px;
+flex:1;
+min-width:260px;
+border:1px solid rgba(255,255,255,.05);
+overflow:hidden;
+}
+
+.about-card table{
+width:100%;
+}
+
+.about-card td{
+padding:12px 0;
+word-break:break-word;
+}
+
+.about-card td strong{
+color:#00f2fe;
+}
+
+.skills-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+flex:1;
+}
+
+.skill-item{
+background:#111827;
+padding:20px;
+border-radius:12px;
+text-align:center;
+border:1px solid rgba(0,242,254,.1);
+transition:.3s;
+}
+
+.skill-item:hover{
+border-color:#00f2fe;
+color:#00f2fe;
+}
+
+/* ===================================================
+   7. DIGITAL ASSET VAULT
+   =================================================== */
+
+.vault-container,
+.dashboard-container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.vault-header{
+margin-bottom:25px;
+text-align:center;
+}
+
+.vault-header h1{
+font-size:2rem;
+color:#00f2fe;
+}
+
+.vault-header p{
+color:#9ca3af;
+line-height:1.7;
+}
+
+.vault-tabs{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.vault-tab{
+padding:10px 18px;
+border:none;
+border-radius:14px;
+background:#161b22;
+color:#d1d5db;
+cursor:pointer;
+font-weight:600;
+white-space:nowrap;
+transition:.3s;
+}
+
+.vault-tab:hover,
+.active-tab{
+background:#06b6d4;
+color:#fff;
+}
+
+.grid-container,
+.certificate-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+}
+
+.cert-category{
+display:none;
+}
+
+.active-category{
+display:grid;
+}
+
+.swiper{
+width:100%;
+padding:30px 0 60px;
+}
+
+.swiper-slide{
+width:auto;
+height:auto;
+}
+
+/* Card */
+
+.card,
+.cert-card{
+background:linear-gradient(145deg,#121216,#1a1a22);
+border:1px solid #2f2f38;
+border-radius:16px;
+padding:24px;
+display:flex;
+flex-direction:column;
+height:100%;
+transition:.3s;
+}
+
+.card:hover,
+.cert-card:hover{
+transform:translateY(-4px);
+box-shadow:0 10px 25px rgba(0,242,254,.15);
+}
+
+.card h3,
+.cert-card h3{
+font-size:1.1rem;
+margin-bottom:10px;
+}
+
+.card p,
+.cert-card p{
+line-height:1.7;
+flex-grow:1;
+}
+
+.cert-skills{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin-top:18px;
+}
+
+.cert-skills span{
+background:#1f2937;
+padding:6px 10px;
+border-radius:8px;
+font-size:.75rem;
+}
+
+.btn,
+.btn-detail,
+.cert-card button{
+width:100%;
+padding:12px;
+border-radius:10px;
+margin-top:16px;
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+color:#00f2fe!important;
+transform:scale(.75);
+}
+
+.swiper-pagination-bullet-active{
+background:#00f2fe!important;
+}
+
+/* ===================================================
+   RESPONSIVE HP
+   =================================================== */
+@media(max-width:768px){
+.stats-grid{
+grid-template-columns:1fr;
+}
+
+.skills-box{
+grid-template-columns:1fr;
+}
+
+.about-card{
+min-width:100%;
+}
+
+.vault-header h1{
+font-size:1.6rem;
+}
+}
+
+/* ===================================================
+   8. PREMIUM MODAL POP-UP
+   Modal untuk preview sertifikat/detail
+=================================================== */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    overflow-y:auto;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    padding:20px;
+    animation:fadeModal .3s ease;
+}
+
+@keyframes fadeModal{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.modal-content{
+    background:
+    linear-gradient(
+    145deg,
+    #111827,
+    #0f172a
+    );
+
+    border:2px solid #00ff66;
+    width:min(550px,95%);
+    margin:60px auto;
+    padding:30px;
+    border-radius:18px;
+    position:relative;
+    box-shadow:
+    0 0 30px
+    rgba(0,242,254,.12);
+    animation:
+    zoomIn .4s
+    cubic-bezier(
+    .175,
+    .885,
+    .32,
+    1.275
+    );
+}
+
+@keyframes zoomIn{
+from{
+transform:scale(.7);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.close-btn{
+position:absolute;
+top:15px;
+right:20px;
+font-size:2rem;
+color:#8a8a93;
+cursor:pointer;
+transition:.3s;
+}
+
+.close-btn:hover{
+color:#00f2fe;
+transform:
+rotate(90deg);
+}
+
+.cert-preview{
+width:100%;
+border-radius:14px;
+margin-top:20px;
+border:
+1px solid
+rgba(255,255,255,.08);
+transition:.3s;
+}
+
+.cert-preview:hover{
+transform:
+scale(1.01);
+}
+
+/* ===================================================
+   9. FOOTER
+   Footer tetap di bawah
+=================================================== */
+
+footer{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+padding:15px;
+text-align:center;
+background:#070a12;
+color:#475569;
+font-size:.85rem;
+border-top:1px solid rgba(255,255,255,.05);
+z-index:999;
+}
+
+/* supaya konten tidak tertutup footer */
+.page{
+padding-bottom:70px;
+}
+
+/* ===================================================
+   10. VAULT / CERTIFICATE SYSTEM
+   Layout kartu sertifikat
+=================================================== */
+.vault-container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.vault-header{
+text-align:center;
+margin-bottom:40px;
+}
+.vault-header h1{
+font-size:2.5rem;
+color:#fff;
+}
+
+.vault-header p{
+color:#a0aec0;
+}
+
+.vault-tabs{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+margin-bottom:30px;
+}
+
+.vault-tab{
+padding:10px 20px;
+background:#1a202c;
+color:#cbd5e0;
+border:
+1px solid
+#4a5568;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+
+.vault-tab:hover,
+.vault-tab.active-tab{
+background:#00f2fe;
+color:#08111d;
+border-color:#00f2fe;
+box-shadow:
+0 0 15px
+rgba(0,242,254,.2);
+}
+
+/* Grid Sertifikat */
+.cert-category{
+display:none;
+width:100%;
+margin-top:20px;
+gap:20px;
+}
+
+.cert-category.active-category{
+display:grid;
+grid-template-columns:
+repeat(
+3,
+1fr
+);
+}
+
+/* Card Sertifikat */
+
+.cert-card{
+background:#1a202c;
+border:
+1px solid
+#2d3748;
+border-radius:14px;
+padding:20px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+transition:.3s;
+}
+
+.cert-card:hover{
+transform:
+translateY(-5px);
+box-shadow:
+0 10px 20px
+rgba(0,0,0,.3);
+}
+
+.cert-badge{
+align-self:flex-end;
+padding:5px 12px;
+border-radius:20px;
+background:#2d3748;
+font-size:.8rem;
+font-weight:700;
+}
+
+.cert-card h3{
+margin:
+20px 0 10px;
+color:#fff;
+}
+
+.cert-card p{
+color:#a0aec0;
+line-height:1.6;
+}
+
+.cert-skills{
+display:flex;
+flex-wrap:wrap;
+gap:8px;
+margin:15px 0;
+}
+
+.cert-skills span{
+background:#2b6cb0;
+color:#fff;
+padding:
+5px 10px;
+border-radius:6px;
+font-size:.75rem;
+}
+
+.cert-card button{
+margin-top:auto;
+padding:10px;
+background:transparent;
+color:#00f2fe;
+border:
+1px solid
+#00f2fe;
+border-radius:8px;
+cursor:pointer;
+transition:.3s;
+}
+
+.cert-card button:hover{
+background:#00f2fe;
+color:#08111d;
+}
+
+/* ===================================================
+   11. RESPONSIVE
+   Optimasi HP & Tablet
+=================================================== */
+@media(max-width:992px){
+.cert-category.active-category{
+grid-template-columns:
+repeat(
+2,
+1fr
+);
+}
+}
+
+@media (max-width:768px){
+
+    /* NAVBAR OPTIMIZATION (SLIM ROW STYLE) */
+    nav {
+        padding: 14px 4% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .logo {
+        font-size: 1.15rem !important;     /* Diperkecil agar menghemat ruang kiri */
+        white-space: nowrap !important;    /* KUNCI: Nama tidak akan patah dua baris */
+        flex-shrink: 0 !important;         /* Mencegah logo gepeng ditekan menu */
+    }
+
+    nav ul {
+        gap: 10px !important;              /* Diperkecil drastis dari 35px menjadi 10px */
+        flex-wrap: nowrap !important;      /* KUNCI: Memaksa Projects tetap di atas */
+    }
+
+    nav ul li a {
+        font-size: 0.78rem !important;     /* Huruf dikecilkan sedikit agar muat satu baris */
+        letter-spacing: 0px !important;    /* Merapatkan huruf */
+    }
+
+    .main-content {
+        margin-top: 85px !important;
+    }
+
+    .page {
+        padding: 30px 6% !important;
+    }
+
+.modal-content{
+width:95%;
+padding:20px;
+margin:20px auto;
+}
+
+.cert-category.active-category{
+grid-template-columns:1fr;
+}
+
+.card,
+.cert-card{
+box-shadow:none;
+transform:none;
+}
+
+footer{
+position:relative;
+}
+}
+
+@media(max-width:576px){
+.modal-content h2{
+font-size:1.1rem;
+}
+}
+
+/* 12. ANIMASI KEREN Animasi tambahan untuk efek keren*/
+@keyframes blink { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+@media (max-width:768px) {
+    /* 1. Perkecil ukuran kotak foto khusus di HP agar konten di bawahnya naik */
+    .img-wrapper {
+        width: 150px !important;  /* Ukuran diperkecil dari bawaan laptop */
+        height: 150px !important; /* Biar seimbang berbentuk kotak */
+        margin: 0 auto 10px auto !important; /* Beri jarak bawah yang tipis saja */
+    }
+
+    /* 2. Rapatkan jarak antar elemen teks di HP */
+    .hero {
+        gap: 10px !important; /* Mempersempit jarak kosong antara foto dan teks */
+    }
+
+    .hero-text h1 {
+        font-size: 2rem !important; /* Sedikit diperkecil agar pas di layar HP */
+        margin-bottom: 10px !important;
+    }
+
+    /* 3. Pastikan halaman memberikan ruang scroll jika layar HP-nya sangat pendek */
+    #home {
+        overflow-y: auto !important; /* Mengizinkan scroll ke bawah jika tombol masih mentok */
+        padding-bottom: 30px !important; /* Beri ruang aman di bawah tombol tab */
+    }
+}
+
+</style>
+
+</head>
+<div>
+
+    <nav>
+        <div class="logo">ALI AKBAR</div>
+        <ul>
+            <li><a id="nav-home" class="active-nav" onclick="showPage('home')">Home</a></li>
+            <li><a id="nav-about" onclick="showPage('about')">About</a></li>
+            <li><a id="nav-certs" onclick="showPage('certs')">Sertifikat</a></li>
+            <li><a id="nav-projects" onclick="showPage('projects')">Projects</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+
+        <!-- HALAMAN 1: HOME (Sekarang Memiliki 2 Sub-Halaman Angka) -->
+        <div id="home" class="page active">
+            <div class="sub-page-container">
+                
+                <!-- HOME - HALAMAN 1 (Berisi Tampilan Lama Anda Lengkap dengan Tabnya) -->
+                <div id="home-p1" class="sub-page active-sub-page">
+                    <div class="hero">
+                        <div class="hero-text">
+                            <div style="font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; color: #00f2fe; margin-bottom: 10px; opacity: 0.8;">
+                                // SECURITY, COMPUTER NETWORK, ADMINISTRATOR & ELECTRICAL AUTOMATION
+                            </div>
+
+                            <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 255, 102, 0.1); border: 1px solid #00ff66; color: #00ff66; padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-family: 'Share Tech Mono', monospace; margin-bottom: 15px;">
+                            <span style="width: 6px; height: 6px; background: #00ff66; border-radius: 50%; display: inline-block; animation: blink 1.5s infinite;"></span>
+                                CORE SYSTEM: ONLINE
+                            </div>
+
+                            <h1>Hi, I am <br><span>Ali Akbar</span></h1>
+                            
+                            <!-- Tab Menu Lama Anda Tetap Utuh -->
+                            <div class="home-tabs">
+                                <button class="sub-tab-btn active-sub" onclick="switchSubTab(event, 'overview')">Overview</button>
+                                <button class="sub-tab-btn" onclick="switchSubTab(event, 'focus')">Focus Area</button>
+                                <button class="sub-tab-btn" onclick="switchSubTab(event, 'stats')">Quick Stats</button>
+                            </div>
+
+                            <!-- Isi Konten Tab Lama Anda Tetap Utuh -->
+                            <div id="sub-overview" class="sub-content active-content">
+                                <p>Mahasiswa S1 Teknologi Informasi di Universitas Sapta Mandiri. Fokus pada Keamanan Siber, Administrasi Jaringan, Manajemen Media, dan Otomasi Kelistrikan.</p>
+                            </div>
+
+                            <div id="sub-focus" class="sub-content">
+                                <div style="font-size: 0.9rem; color: #94a3b8; line-height: 1.6; text-align: left; max-width: 550px;">
+                                    <div style="margin-bottom: 12px;">
+                                        <strong style="color: #00f2fe;">• Computer Network & Security</strong><br>
+                                        <span style="font-size: 0.85rem; color: #cbd5e1;">Fokus pada perancangan jaringan aman, konfigurasi perangkat keras (seperti router), dan analisis lalu lintas data.</span>
+                                    </div>
+                                    <div style="margin-bottom: 12px;">
+                                        <strong style="color: #00f2fe;">• Electrical Installation</strong><br>
+                                        <span style="font-size: 0.85rem; color: #cbd5e1;">Fokus pada perencanaan dan pemasangan instalasi listrik bangunan sederhana.</span>
+                                    </div>
+                                    <div>
+                                        <strong style="color: #00f2fe;">• Digital Content & Media Management</strong><br>
+                                        <span style="font-size: 0.85rem; color: #cbd5e1;">Pengembangan aset digital, optimasi konten website, dan manajemen media komunikasi.</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sub-stats" class="sub-content">
+                                <div class="stats-grid">
+                                    <div class="stat-box">
+                                        <h4>31</h4>
+                                        <p>Sertifikat & Lisensi</p>
+                                    </div>
+                                    <div class="stat-box">
+                                        <h4>3.79</h4>
+                                        <p>IPK Skala 4.00</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a onclick="showPage('certs')" class="btn" style="cursor:pointer; margin-top: 25px;">Explore Vault</a>
+                        </div>
+                        <div class="hero-img-box">
+                            <div class="img-wrapper">
+                                <img src="C:\Users\user\OneDrive\Dokumen\sertifikat\foto.jpeg" style="opacity: 0;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOME - HALAMAN 2 (DASBOR STATUS LAB SIBER & HARDWARE ALI) -->
+                <div id="home-p2" class="sub-page">
+                    <div style="padding-top: 10px;">
+                        <h2 style="font-size: 1.6rem; color: #fff; margin-bottom: 20px;">
+                            <span>//</span> SYSTEM HARDWARE & LAB MONITOR
+                        </h2>
+                        
+                        <!-- Layout Kotak Kiri dan Kanan Pas di Layar -->
+                        <div class="about-grid" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                            
+                            <!-- Kotak Kiri: Status Lab Simulasi Siber -->
+                            <div class="about-card" style="flex: 1; min-width: 280px; border-left: 3px solid #a855f7;">
+                                <h3 style="color: #a855f7; font-size: 1rem; margin-bottom: 15px; font-family: 'Share Tech Mono', monospace;"> (VIRTUAL LAB STATUS) </h3>
+                                <table style="font-size: 0.85rem;">
+                                    <tr><td><strong>Main OS Target</strong></td><td style="color: #a855f7;">Kali Linux </td></tr>
+                                    <tr><td><strong>Lab Simulator</strong></td><td style="color: #cbd5e1;">TryHackMe (Active Participant)</td></tr>
+                                    <tr><td><strong>Mitigasi Jaringan</strong></td><td>Cisco Packet Tracer </td></tr>
+                                    <tr><td><strong>Status Keahlian</strong></td><td style="background: rgba(168, 85, 247, 0.1); color: #a855f7; padding: 2px 6px; border-radius: 4px; display: inline-block;">LEARNING STAGE</td></tr>
+                                </table>
+                            </div>
+
+                            <!-- Kotak Kanan: Status Lab Fisik Vokasional -->
+                            <div class="about-card" style="flex: 1; min-width: 280px; border-left: 3px solid #00f2fe;">
+                                <h3 style="color: #00f2fe; font-size: 1rem; margin-bottom: 15px; font-family: 'Share Tech Mono', monospace;"> (PHYSICAL HARDWARE LAB) </h3>
+                                <table style="font-size: 0.85rem;">
+                                    <tr><td><strong>Sertifikasi Aktif</strong></td><td style="color: #00f2fe;">Instalasi Listrik Penerangan (BLK)</td></tr>
+                                    <tr><td><strong>Hardware Skill</strong></td><td>PC Assembly & Troubleshooting</td></tr>
+                                    <tr><td><strong>Web Management</strong></td><td>Web Optimization Training (UNIVSM)</td></tr>
+                                    <tr><td><strong>Status Praktik</strong></td><td style="background: rgba(0, 242, 254, 0.1); color: #00f2fe; padding: 2px 6px; border-radius: 4px; display: inline-block;">COMPLETED DAILY</td></tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <!-- Bagian Tautan Media Sosial Profesional -->
+                        <div style="margin-top: 25px; background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.05);">
+                            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 10px; font-family: 'Share Tech Mono', monospace;">// SECURE TELEMETRY LINKS</p>
+                            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                                <a href="https://github.com" target="_blank" style="color: #00f2fe; text-decoration: none; font-size: 0.85rem; font-weight: 600;">[ GITHUB PROFILE ]</a>
+                                <a href="https://tryhackme.com" target="_blank" style="color: #a855f7; text-decoration: none; font-size: 0.85rem; font-weight: 600;">[ TRYHACKME VAULT ]</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tombol Paginasi Angka Bulat di Bagian Bawah Menu HOME -->
+            <div class="sub-pagination">
+                <button class="sub-page-btn active-btn" onclick="changeSubPage('home', 1, this)">1</button>
+                <button class="sub-page-btn" onclick="changeSubPage('home', 2, this)">2</button>
+            </div>
+        </div>
+
+        <!-- ===================================================
+           KODE UTUH HALAMAN ABOUT: GABUNGAN DATA MAHASISWA & KEAHLIAN
+           =================================================== -->
+        <div id="about" class="page">
+            <div class="sub-page-container">
+                
+                <!-- ABOUT - HALAMAN 1 (Profil, Data Kuliah Aktif S4 & Sekolah) -->
+                <div id="about-p1" class="sub-page active-sub-page">
+                    <h2><span>01.</span> Data Mahasiswa & Profile</h2>
+                    
+                    <!-- Ringkasan Tentang Saya -->
+                    <div style="margin-bottom: 25px; max-width: 850px;">
+                        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; text-align: justify;">
+                            Saya adalah Mahasiswa aktif S1 Teknologi Informasi di Universitas Sapta Mandiri (Semester 4) dengan pendekatan belajar adaptif dan solutif. Mengambil spesialisasi <strong style="color: #00f2fe;">Keamanan Siber</strong> karena kompleksitasnya yang tinggi, sekaligus membangun fondasi kuat di bidang <strong style="color: #fff;">Infrastruktur Fisik, Kelistrikan Vokasional, dan Manajemen Perangkat Keras</strong>. Saya percaya bahwa keamanan digital yang kokoh harus didukung oleh pemahaman mendalam terhadap infrastruktur fisik dan perangkat keras di dunia nyata.
+                        </p>
+                    </div>
+
+                    <div class="about-grid">
+                        <!-- DATA MAHASISWA SEMESTER 4 ANDA (TETAP AMAN DI SINI) -->
+                        <div class="about-card">
+                            <h3 style="color: #00f2fe; font-size: 1.1rem; margin-bottom: 15px; font-family: 'Share Tech Mono', monospace;">// CURRENT ACADEMIC DATA</h3>
+                            <table>
+                                <tr><td><strong>Nama</strong></td><td>Ali Akbar</td></tr>
+                                <tr><td><strong>NIM</strong></td><td>240131138</td></tr>
+                                <tr><td><strong>Kelas / Semester</strong></td><td>C3 / Semester 4</td></tr>
+                                <tr><td><strong>Program Studi</strong></td><td>S1 Teknologi Informasi</td></tr>
+                                <tr><td><strong>Fakultas</strong></td><td>FST (Fakultas Sains & Teknik)</td></tr>
+                            </table>
+                        </div>
+
+                        <!-- Riwayat Pendidikan Formal dari CV -->
+                        <div class="about-card">
+                            <h3 style="color: #00f2fe; font-size: 1.1rem; margin-bottom: 15px; font-family: 'Share Tech Mono', monospace;">// EDUCATION BACKGROUND</h3>
+                            <table style="border: none;">
+                                <tr>
+                                    <td style="border: none; padding: 10px 0;"><strong>2024 - Sekarang</strong></td>
+                                    <td style="border: none; padding: 10px 0;">S1 Teknologi Informasi — Universitas Sapta Mandiri (Aktif)</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none; padding: 10px 0;"><strong>2021 - 2024</strong></td>
+                                    <td style="border: none; padding: 10px 0;">Jurusan IPS — SMAN 1 Lampihong</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none; padding: 10px 0;"><strong>2018 - 2021</strong></td>
+                                    <td style="border: none; padding: 10px 0;">MTsN 4 Balangan</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABOUT - HALAMAN 2 (EKSPLORASI DETAIL PENUH KEAHLIAN MULTI-TALENTA ALI) -->
+                <div id="about-p2" class="sub-page">
+                    <h2><span>01.</span> Advanced Skill Engineering & Logs</h2>
+                    
+                    <div class="about-grid" style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+                        
+                        <!-- KELOMPOK UTAMA 1: ELECTRICAL & HARDWARE ADVANCED -->
+                        <div class="about-card" style="width: 100%;">
+                            <h3 style="color: #00f2fe; font-size: 1.1rem; margin-bottom: 12px; font-family: 'Share Tech Mono', monospace;">// 01. ELECTRICAL VOKASIONAL & HARDWARE ENGINEERING</h3>
+                            <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.7; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                                <div style="border-left: 3px solid #00f2fe; padding-left: 12px;">
+                                    <strong style="color: #fff;">Instalasi Listrik Bangunan Sederhana (Sertifikasi BLK 2026)</strong><br>
+                                    Menguasai teori dan praktik perencanaan jalur kabel, pemasangan instalasi listrik bangunan sederhana, manajemen beban daya, pengawatan panel distribusi, serta standar keselamatan kerja K3 Kelistrikan berdasarkan materi intensif BLK.
+                                </div>
+                                <div style="border-left: 3px solid #00f2fe; padding-left: 12px;">
+                                    <strong style="color: #fff;">PC Assembly & Hardware Troubleshooting</strong><br>
+                                    Memiliki kemahiran tinggi dalam merakit komputer dari nol, pemilihan komponen yang kompatibel (Processor, RAM, Motherboard, GPU, PSU), manajemen kabel internal case, serta analisis kerusakan perangkat keras (Hardware fault-finding).
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KELOMPOK UTAMA 2: CORE IT, NETWORKING, & CYBERSECURITY -->
+                        <div class="about-card" style="width: 100%;">
+                            <h3 style="color: #a855f7; font-size: 1.1rem; margin-bottom: 12px; font-family: 'Share Tech Mono', monospace;">// 02. COMPUTER NETWORK & SECURITY FRAMEWORK</h3>
+                            <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.7; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                                <div style="border-left: 3px solid #a855f7; padding-left: 12px;">
+                                    <strong style="color: #fff;">Sistem Administrasi Jaringan & Siber (Validasi BNSP)</strong><br>
+                                    Memegang sertifikat Junior Cybersecurity Specialist & Network Admin. Mengerti dasar konfigurasi router/switch, pengelompokan IP (Subnetting), arsitektur keamanan jaringan, serta pemantauan paket data siber.
+                                </div>
+                                <div style="border-left: 3px solid #a855f7; padding-left: 12px;">
+                                    <strong style="color: #fff;">Pola Pikir Strategis & Pembelajaran Mandiri</strong><br>
+                                    Memilih jalur Keamanan Siber yang memiliki kompleksitas tinggi untuk memaksimalkan bimbingan mentor kampus. Mampu mengimbangi keahlian Web Dev secara otodidak melalui riset mandiri dan platform lab global (TryHackMe).
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KELOMPOK UTAMA 3: DIGITAL APPS & ENTERPRENEURSHIP -->
+                        <div class="about-card" style="width: 100%;">
+                            <h3 style="color: #22c55e; font-size: 1.1rem; margin-bottom: 12px; font-family: 'Share Tech Mono', monospace;">// 03. DIGITAL AUTOMATION & MICRO-ENTREPRENEURSHIP</h3>
+                            <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.7; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                                <div style="border-left: 3px solid #22c55e; padding-left: 12px;">
+                                    <strong style="color: #fff;">Microsoft Office Suite Automation (Mastered)</strong><br>
+                                    Menguasai penuh fungsi tingkat lanjut Microsoft Word, Excel (pemrosesan rumus data administratif), dan PowerPoint untuk presentasi profesional berstandar industri dengan predikat kelulusan memuaskan (Nilai A).
+                                </div>
+                                <div style="border-left: 3px solid #22c55e; padding-left: 12px;">
+                                    <strong style="color: #fff;">Wirausaha Mandiri Cukur Rambut (Barbering)</strong><br>
+                                    Aktif menjalankan bisnis pangkas rambut secara mandiri. Mengembangkan keterampilan interpersonal nyata, teknik komunikasi persuasif, manajemen waktu operasional, ketelitian motorik tinggi, serta strategi retensi kepuasan konsumen.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tombol Paginasi Angka di Bawah Menu About -->
+            <div class="sub-pagination">
+                <button class="sub-page-btn active-btn" onclick="changeSubPage('about', 1, this)">1</button>
+                <button class="sub-page-btn" onclick="changeSubPage('about', 2, this)">2</button>
+            </div>
+        </div>
+
+<div id="certs" class="page">
+    <div class="vault-container">
+
+        <div class="vault-header">
+            <h1>⚡ DIGITAL ASSET VAULT</h1>
+            <p>
+                Verified Certifications, Technical Training,
+                Practical Skills & Continuous Learning
+            </p>
+        </div>
+
+        <div class="vault-tabs">
+            <button class="vault-tab active-tab" onclick="showCategory('bnsp', this)">BNSP</button>
+            <button class="vault-tab" onclick="showCategory('lppm', this)">LPPM</button>
+            <button class="vault-tab" onclick="showCategory('training', this)">Training</button>
+            <button class="vault-tab" onclick="showCategory('cyber', this)">Cyber Security</button>
+            <button class="vault-tab" onclick="showCategory('skills', this)">Skills</button>
+            <button class="vault-tab" onclick="showCategory('webinar', this)">Webinar</button>
+        </div>
+
+        <!-- ================= BNSP CATEGORY ================= -->
+        <div class="cert-category active-category" id="bnsp">
+    <div class="cert-card electrical">
+        <span class="cert-badge">🏆 BNSP</span>
+        <h3>Junior Network Administrator</h3>
+        <p>LSP Media Informatika</p>
+        <div class="cert-skills">
+            <span>Routing</span>
+            <span>Subnetting</span>
+            <span>VLAN</span>
+        </div>
+        <button onclick="openModal('sertifikat/network-bnsp.jpeg', 'Junior Network Administrator - BNSP', 'Memiliki kualifikasi resmi untuk merancang dan memelihara infrastruktur jaringan komputer. Mampu melakukan konfigurasi perangkat Cisco/Mikrotik, mengelola segmen jaringan melalui VLAN, serta memastikan rute data efisien menggunakan protokol routing statis dan dinamis.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🛡️ BNSP</span>
+        <h3>Junior Cybersecurity Specialist</h3>
+        <p>LSP TIK Global</p>
+        <div class="cert-skills">
+            <span>Linux</span>
+            <span>Security</span>
+            <span>Cyber</span>
+        </div>
+        <button onclick="openModal('sertifikat/cyber-bnsp.jpeg', 'Junior Cybersecurity Specialist - BNSP', 'Sertifikasi ini mengakui kemampuan teknis dalam mengoperasikan sistem keamanan informasi sesuai standar industri. Kompeten dalam menganalisis kerentanan, melakukan mitigasi serangan siber, serta memastikan integritas dan kerahasiaan data organisasi.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">💼 BNSP</span>
+        <h3>Junior Office Operator</h3>
+        <p>LSP Media Informatika</p>
+        <div class="cert-skills">
+            <span>Word</span>
+            <span>Excel</span>
+            <span>PowerPoint</span>
+        </div>
+        <button onclick="openModal('sertifikat/office-bnsp.jpeg', 'Junior Office Operator - BNSP', 'Kompetensi nasional dalam otomatisasi administrasi perkantoran dan pengolahan data digital. Memvalidasi kemampuan pengoperasian perangkat lunak perkantoran mulai dari pengolah kata, data angka, hingga manajemen komunikasi elektronik.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🎨 BNSP</span>
+        <h3>Junior Graphic Designer</h3>
+        <p>LSP Media Informatika</p>
+        <div class="cert-skills">
+            <span>Design</span>
+            <span>Creative</span>
+            <span>Branding</span>
+        </div>
+        <button onclick="openModal('sertifikat/graphic-bnsp.jpeg', 'Junior Graphic Designer - BNSP', 'Menggabungkan estetika visual dengan fungsi komunikasi teknis. Mengakui kemampuan menerjemahkan design brief menjadi karya visual yang efektif untuk mendukung kebutuhan branding dan informasi.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">📈 BNSP</span>
+        <h3>Digital Marketing Specialist</h3>
+        <p>National Certification</p>
+        <div class="cert-skills">
+            <span>SEO</span>
+            <span>Social Media</span>
+            <span>Marketing</span>
+        </div>
+        <button onclick="openModal('sertifikat/marketing-bnsp.jpeg', 'Digital Marketing Specialist - BNSP', 'Memiliki kualifikasi untuk merancang ekosistem pemasaran digital yang komprehensif, mulai dari riset merek, perencanaan penjualan, hingga eksekusi strategi kreatif di media sosial.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">👥 BNSP</span>
+        <h3>Human Resources Staff</h3>
+        <p>LSP MSDM Unggul Indonesia</p>
+        <div class="cert-skills">
+            <span>HR</span>
+            <span>Payroll</span>
+            <span>Administration</span>
+        </div>
+        <button onclick="openModal('sertifikat/hrd-bnsp.jpeg', 'Human Resources Staff - BNSP', 'Memahami struktur fundamental manajemen sumber daya manusia. Kompeten dalam menyusun deskripsi jabatan yang sistematis, mengelola administrasi pengupahan, serta jaminan sosial sesuai regulasi.')">View Details</button>
+    </div>
+</div>
+
+<div class="cert-category" id="lppm">
+    <div class="cert-card electrical">
+        <span class="cert-badge">🌐 LPPM</span>
+        <h3>Pelatihan Jaringan Komputer</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Network</span>
+            <span>LAN</span>
+            <span>Routing</span>
+        </div>
+        <button onclick="openModal('sertifikat/jaringan-lppm.jpeg', 'Pelatihan Jaringan Komputer - LPPM', 'Implementasi infrastruktur jaringan lokal (LAN), konfigurasi Switch, dan perancangan pengalamatan jaringan komputer berbasis SKKNI.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🔒 LPPM</span>
+        <h3>Pelatihan Cyber Security</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Cyber</span>
+            <span>Linux</span>
+            <span>Security</span>
+        </div>
+        <button onclick="openModal('sertifikat/cyber-lppm.jpeg', 'Pelatihan Cyber Security - LPPM', 'Program pengamanan infrastruktur informasi level instansi/pemerintahan, cyber awareness, serta perlindungan data publik.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">💻 LPPM</span>
+        <h3>Pelatihan Teknisi Komputer</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Hardware</span>
+            <span>BIOS</span>
+            <span>Repair</span>
+        </div>
+        <button onclick="openModal('sertifikat/teknisi-lppm.jpeg', 'Pelatihan Teknisi Komputer - LPPM', 'Validasi kemampuan diagnosa, perbaikan, dan pemeliharaan perangkat keras komputer, perakitan workstation, hingga optimasi komponen hardware.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🧑‍💻 LPPM</span>
+        <h3>Pelatihan Konten Website</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Content</span>
+            <span>Copywriting</span>
+            <span>Social Media</span>
+            <span>WordPress</span>
+        </div>
+        <button onclick="openModal('', 'Pelatihan Konten Website - LPPM', 'Pelatihan manajemen konten website, strategi publikasi digital, dan optimasi copywriting.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">💼 LPPM</span>
+        <h3>Pelatihan Office Operator</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Word</span>
+            <span>Excel</span>
+            <span>PowerPoint</span>
+        </div>
+        <button onclick="openModal('sertifikat/office-lppm.jpeg', 'Pelatihan Office Operator - LPPM', 'Otomatisasi dokumen perkantoran, pengolahan data, dan produktivitas penunjang administrasi digital.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🎨 LPPM</span>
+        <h3>Pelatihan Desain Grafis</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Design</span>
+            <span>Vector</span>
+            <span>Editing</span>
+        </div>
+        <button onclick="openModal('sertifikat/desain-lppm.jpeg', 'Pelatihan Desain Grafis - LPPM', 'Komunikasi visual melalui pemahaman prinsip dasar desain, penerapan design brief, dan pengoperasian software kreatif.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">📈 LPPM</span>
+        <h3>Digital Marketing Dasar</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>SEO</span>
+            <span>Branding</span>
+            <span>Marketing</span>
+        </div>
+        <button onclick="openModal('sertifikat/marketing-lppm.jpeg', 'Digital Marketing Dasar - LPPM', 'Riset merek, perencanaan pemasaran digital, analisis target audiens, dan formula proyeksi target penjualan.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">📱 LPPM</span>
+        <h3>Digital Marketing Sosmed</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Content</span>
+            <span>Copywriting</span>
+            <span>Social Media</span>
+        </div>
+        <button onclick="openModal('sertifikat/marketing2-lppm.jpeg', 'Digital Marketing Sosmed - LPPM', 'Manajemen kalender konten, eksekusi promosi, periklanan berbayar, dan pengelolaan aplikasi media sosial.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">🗂️ LPPM</span>
+        <h3>Pelatihan Staff Administrasi</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Document</span>
+            <span>Administration</span>
+            <span>Management</span>
+        </div>
+        <button onclick="openModal('sertifikat/staff-lppm.jpeg', 'Pelatihan Staff Administrasi - LPPM', 'Tata kelola administrasi perkantoran, penyusunan uraian jabatan, dan implementasi kebijakan sumber daya manusia.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">👨‍🔧 LPPM</span>
+        <h3>Front Office & Customer Service</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Komoniksi</span>
+            <span>Attitude</span>
+            <span>Body Language</span>
+        </div>
+        <button onclick="openModal('', 'Front Office & Customer Service - LPPM', 'Pelatihan pelayanan prima, tata krama, dan komunikasi efektif untuk resepsionis dan layanan pelanggan.')">View Details</button>
+    </div>
+</div>
+
+        <!-- ================= TRAINING CATEGORY ================= -->
+        <div class="cert-category" id="training">
+    <div class="cert-card cyber">
+        <span class="cert-badge">💻 LPK</span>
+        <h3>Web Programming Full Stack</h3>
+        <p>LPK Gevarion</p>
+        <div class="cert-skills">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+        </div>
+        <button onclick="openModal('sertifikat/pemrograman-lpk.jpeg', 'Web Programming Full Stack - LPK Gevarion', 'Sertifikasi ini memvalidasi kemampuan saya dalam membangun struktur website yang responsif dan interaktif. Pelatihan ini mencakup logika pemrograman sisi klien, desain antarmuka pengguna (UI), serta pengalaman pengguna (UX) untuk standar industri modern.')">View Details</button>
+    </div>
+
+    <div class="cert-card electrical">
+        <span class="cert-badge">⚡ BLK</span>
+        <h3>Electrical Installation</h3>
+        <p>BLK Kabupaten Balangan</p>
+        <div class="cert-skills">
+            <span>Instalasi</span>
+            <span>Maintenance</span>
+            <span>Maintenance</span>
+            <span>KWH</span>
+            <span>MCB</span>
+            <span>Grounding</span>
+            <span>Wiring</span>
+            <span>Panel</span>
+            <span>PUIL</span>
+            <span>Troubleshooting</span>
+        </div> 
+        <button onclick="openModal('', 'Electrical Installation - BLK Kab. Balangan', 'Pelatihan dan penguasaan keahlian instalasi listrik, pemeliharaan panel, perkabelan sesuai standar PUIL, dan perbaikan perangkat kelistrikan.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">📝 CONTENT</span>
+        <h3>Website Content Training</h3>
+        <p>Digital Talent Training</p>
+        <div class="cert-skills">
+            <span>SEO</span>
+            <span>Content</span>
+            <span>CMS</span>
+        </div>
+        <button onclick="openModal('', 'Website Content Training - Digital Talent', 'Pelatihan manajemen konten website, strategi publikasi digital, dan optimasi mesin pencari (SEO).')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">💼 LPPM</span>
+        <h3>Office Operator Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Word</span>
+            <span>Excel</span>
+            <span>PowerPoint</span>
+        </div>
+        <button onclick="openModal('sertifikat/office-lppm.jpeg', 'Office Operator Training - Univ. Sapta Mandiri', 'Otomatisasi dokumen dan produktivitas digital perkantoran berbasis SKKNI.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🎨 LPPM</span>
+        <h3>Graphic Design Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Design</span>
+            <span>Branding</span>
+            <span>Visual</span>
+        </div>
+        <button onclick="openModal('sertifikat/desain-lppm.jpeg', 'Graphic Design Training - Univ. Sapta Mandiri', 'Komunikasi visual melalui prinsip desain dan pengoperasian software kreatif berbasis SKKNI.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">⚙️ HARDWARE</span>
+        <h3>Computer Technician Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>PC Assembly</span>
+            <span>BIOS</span>
+            <span>Troubleshooting</span>
+        </div>
+        <button onclick="openModal('sertifikat/teknisi-lppm.jpeg', 'Computer Technician Training - Univ. Sapta Mandiri', 'Keahlian dalam diagnosa, perbaikan, dan pemeliharaan perangkat keras komputer meliputi perakitan dan optimasi komponen hardware.')">View Details</button>
+    </div>
+
+    <div class="cert-card electrical">
+        <span class="cert-badge">🌐 NETWORK</span>
+        <h3>Computer Network Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>IP Address</span>
+            <span>Routing</span>
+            <span>Wireless</span>
+        </div>
+        <button onclick="openModal('sertifikat/jaringan-lppm.jpeg', 'Computer Network Training - Univ. Sapta Mandiri', 'Implementasi infrastruktur jaringan lokal (LAN), konfigurasi Switch, dan perancangan pengalamatan jaringan berbasis SKKNI.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">📈 MARKETING</span>
+        <h3>Digital Marketing Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>SEO</span>
+            <span>Copywriting</span>
+            <span>Social Media</span>
+        </div>
+        <button onclick="openModal('sertifikat/marketing-lppm.jpeg', 'Digital Marketing Training - Univ. Sapta Mandiri', 'Riset merek, perencanaan pemasaran, manajemen media sosial, dan eksekusi promosi produk digital.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">🏢 ADMIN</span>
+        <h3>Administration Staff Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Administration</span>
+            <span>Documents</span>
+            <span>Management</span>
+        </div>
+        <button onclick="openModal('sertifikat/staff-lppm.jpeg', 'Administration Staff Training - Univ. Sapta Mandiri', 'Tata kelola administrasi perkantoran, penyusunan uraian jabatan, dan manajemen sumber daya manusia.')">View Details</button>
+    </div>
+</div>
+
+        <!-- ================= CYBER SECURITY CATEGORY ================= -->
+        <div class="cert-category" id="cyber" style="justify-content: center;">
+    <div class="cert-card cyber">
+        <span class="cert-badge">🛡️ TRYHACKME</span>
+        <h3>Advent of Cyber 2025</h3>
+        <p>TryHackMe International</p>
+        <div class="cert-skills">
+            <span>Web Exploitation</span>
+            <span>DFIR</span>
+            <span>Cloud</span>
+        </div>
+        <button onclick="openModal('sertifikat/thm-2025.jpg', 'Advent of Cyber 2025 - TryHackMe', 'Program pelatihan praktis (Hands-on) yang mencakup berbagai skenario serangan siber dunia nyata. Menyelesaikan lab terkait eksploitasi web, keamanan cloud, dan forensik digital.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🛡️ TRYHACKME</span>
+        <h3>Advent of Cyber 2024</h3>
+        <p>TryHackMe International</p>
+        <div class="cert-skills">
+            <span>Linux</span>
+            <span>Scanning</span>
+            <span>Networking</span>
+        </div>
+        <button onclick="openModal('sertifikat/thm-2024.jpg', 'Advent of Cyber 2024 - TryHackMe', 'Langkah awal pendalaman Cybersecurity. Memfokuskan pada dasar jaringan untuk pentesting, eksploitasi Linux, dan pengenalan tools keamanan standar industri.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🏆 BNSP</span>
+        <h3>Junior Cybersecurity Specialist</h3>
+        <p>LSP TIK Global</p>
+        <div class="cert-skills">
+            <span>Security</span>
+            <span>Linux</span>
+            <span>Cyber</span>
+        </div>
+        <button onclick="openModal('sertifikat/cyber-bnsp.jpeg', 'Junior Cybersecurity Specialist - BNSP', 'Validasi teknis dalam pengoperasian sistem keamanan informasi sesuai standar industri. Kompeten menganalisis kerentanan dan mitigasi serangan siber.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🎓 CAMPUS</span>
+        <h3>Cyber Security Training</h3>
+        <p>Universitas Sapta Mandiri</p>
+        <div class="cert-skills">
+            <span>Cyber Hygiene</span>
+            <span>Security</span>
+            <span>Protection</span>
+        </div>
+        <button onclick="openModal('sertifikat/cyber-lppm.jpeg', 'Cyber Security Training - Univ. Sapta Mandiri', 'Program pengamanan infrastruktur informasi level instansi, cyber awareness, dan perlindungan data publik berbasis SKKNI.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🌐 WEBINAR</span>
+        <h3>Cyber Security 101</h3>
+        <p>Dunia Coding #109</p>
+        <div class="cert-skills">
+            <span>Career</span>
+            <span>Cyber</span>
+            <span>Industry</span>
+        </div>
+        <button onclick="openModal('', 'Cyber Security 101 - Dunia Coding #109', 'Sesi webinar pengenalan dasar keamanan siber, fundamental perlindungan sistem, dan wawasan kesiapan berkarier di industri digital.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🌐 WEBINAR</span>
+        <h3>Secure Website from AI Attack</h3>
+        <p>Dunia Coding #106</p>
+        <div class="cert-skills">
+            <span>OWASP</span>
+            <span>Security</span>
+            <span>Website</span>
+        </div>
+        <button onclick="openModal('', 'Secure Website from AI Attack - Dunia Coding #106', 'Webinar yang membahas mitigasi kerentanan website dari ancaman injeksi maupun serangan otomatis yang memanfaatkan kecerdasan buatan.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🌐 WEBINAR</span>
+        <h3>Cyber Security Career Roadmap</h3>
+        <p>Dunia Coding #114</p>
+        <div class="cert-skills">
+            <span>Roadmap</span>
+            <span>Career</span>
+            <span>Learning</span>
+        </div>
+        <button onclick="openModal('', 'Cyber Security Career Roadmap - Dunia Coding #114', 'Panduan terstruktur dan peta jalan pengembangan kompetensi untuk memulai karier profesional di bidang keamanan siber.')">View Details</button>
+    </div>
+</div>
+        <!-- ================= SKILLS CATEGORY ================= -->
+        <div class="cert-category" id="skills">
+    <div class="cert-card electrical">
+        <span class="cert-badge">⚡ BLK</span>
+        <h3>Electrical Installation</h3>
+        <p>BLK Kabupaten Balangan</p>
+        <div class="cert-skills">
+            <span>Instalasi</span>
+            <span>Maintenance</span>
+            <span>Maintenance</span>
+            <span>KWH</span>
+            <span>MCB</span>
+            <span>Grounding</span>
+            <span>Wiring</span>
+            <span>Panel</span>
+            <span>PUIL</span>
+            <span>Troubleshooting</span>
+        </div>
+        <button onclick="openModal('', 'Electrical Installation - BLK Kabupaten Balangan', 'Keahlian dalam instalasi listrik, perawatan panel dan perkabelan sesuai PUIL, serta perbaikan gangguan kelistrikan.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">💈 BARBER</span>
+        <h3>Professional Barbershop</h3>
+        <p>CV Ad Diwani Group</p>
+        <div class="cert-skills">
+            <span>Haircut</span>
+            <span>Styling</span>
+            <span>Service</span>
+        </div>
+        <button onclick="openModal('sertifikat/barbershop.jpeg', 'Professional Barbershop - CV Ad Diwani Group', 'Menunjukkan kemandirian dan jiwa kewirausahaan. Pelatihan profesional yang mengasah ketelitian, disiplin waktu, dan pelayanan pelanggan yang unggul.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">⚙️ HARDWARE</span>
+        <h3>Computer Technician</h3>
+        <p>Technical Hardware Skill</p>
+        <div class="cert-skills">
+            <span>PC Assembly</span>
+            <span>BIOS</span>
+            <span>Troubleshooting</span>
+        </div>
+        <button onclick="openModal('sertifikat/teknisi-lppm.jpeg', 'Computer Technician - Technical Hardware Skill', 'Validasi kemampuan diagnosa, perbaikan, dan pemeliharaan perangkat keras komputer, perakitan workstation, serta optimasi komponen hardware.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">💼 OFFICE</span>
+        <h3>Office Productivity</h3>
+        <p>Daily Academic & Administration</p>
+        <div class="cert-skills">
+            <span>Word</span>
+            <span>Excel</span>
+            <span>Presentation</span>
+        </div>
+        <button onclick="openModal('sertifikat/office-bnsp.jpeg', 'Office Productivity - Daily Academic & Administration', 'Kompetensi nasional dalam otomatisasi administrasi perkantoran dan pengolahan data digital. Memvalidasi pengoperasian perangkat lunak mulai dari pengolah kata, data angka, hingga manajemen komunikasi elektronik.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🎨 DESIGN</span>
+        <h3>Graphic Design</h3>
+        <p>Media & Publication Division</p>
+        <div class="cert-skills">
+            <span>Poster</span>
+            <span>Branding</span>
+            <span>Creative</span>
+        </div>
+        <button onclick="openModal('sertifikat/graphic-bnsp.jpeg', 'Graphic Design - Media & Publication Division', 'Menggabungkan estetika visual dengan fungsi komunikasi teknis. Mampu menerjemahkan design brief menjadi karya visual yang efektif untuk mendukung kebutuhan branding dan informasi.')">View Details</button>
+    </div>
+
+    <div class="cert-card general">
+        <span class="cert-badge">🚗 SAFETY</span>
+        <h3>Driving Safety Certificate</h3>
+        <p>Operational Safety Knowledge</p>
+        <div class="cert-skills">
+            <span>Safety</span>
+            <span>Driving</span>
+            <span>Discipline</span>
+        </div>
+        <button onclick="openModal('sertifikat/sarana.jpeg', 'Driving Safety Certificate - Operational Safety Knowledge', 'Menjamin standar keamanan yang tinggi dalam mobilitas profesional. Sertifikasi mencakup pemahaman aturan lalu lintas nasional dan teknik berkendara yang aman.')">View Details</button>
+    </div>
+</div>
+
+        <!-- ================= WEBINAR CATEGORY ================= -->
+        <div class="cert-category" id="webinar">
+    <div class="cert-card cyber">
+        <span class="cert-badge">🌐 WEBINAR</span>
+        <h3>Cyber Security 101</h3>
+        <p>Dunia Coding #109</p>
+        <div class="cert-skills">
+            <span>Cyber</span>
+            <span>Career</span>
+            <span>Security</span>
+        </div>
+        <button onclick="openModal('', 'Cyber Security 101 - Dunia Coding #109', 'Sesi webinar pengenalan dasar keamanan siber, fundamental perlindungan sistem, dan wawasan kesiapan berkarier di industri digital.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🌐 WEBINAR</span>
+        <h3>Secure Website from AI Attack</h3>
+        <p>Dunia Coding #106</p>
+        <div class="cert-skills">
+            <span>OWASP</span>
+            <span>Website</span>
+            <span>Security</span>
+        </div>
+        <button onclick="openModal('', 'Secure Website from AI Attack - Dunia Coding #106', 'Webinar yang membahas mitigasi kerentanan website dari ancaman injeksi maupun serangan otomatis yang memanfaatkan kecerdasan buatan.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">🌐 WEBINAR</span>
+        <h3>Cyber Security Career Roadmap</h3>
+        <p>Dunia Coding #114</p>
+        <div class="cert-skills">
+            <span>Roadmap</span>
+            <span>Learning</span>
+            <span>Industry</span>
+        </div>
+        <button onclick="openModal('', 'Cyber Security Career Roadmap - Dunia Coding #114', 'Panduan terstruktur dan peta jalan pengembangan kompetensi untuk memulai karier profesional di bidang keamanan siber.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">📊 DATA SCIENCE</span>
+        <h3>Future Data Science & AI</h3>
+        <p>Dunia Coding #104</p>
+        <div class="cert-skills">
+            <span>Data</span>
+            <span>AI</span>
+            <span>Analytics</span>
+        </div>
+        <button onclick="openModal('', 'Future Data Science & AI - Dunia Coding #104', 'Webinar edukasi mengenai tren pengolahan data masa depan, pemanfaatan algoritma AI, dan dasar-dasar analitik modern.')">View Details</button>
+    </div>
+
+    <div class="cert-card cyber">
+        <span class="cert-badge">💻 SOFTWARE</span>
+        <h3>Software Engineer Workflow</h3>
+        <p>Dunia Coding #111</p>
+        <div class="cert-skills">
+            <span>Git</span>
+            <span>Workflow</span>
+            <span>Collaboration</span>
+        </div>
+        <button onclick="openModal('', 'Software Engineer Workflow - Dunia Coding #111', 'Sesi diskusi seputar alur kerja standar industri perangkat lunak, penggunaan Version Control System (Git), dan kolaborasi tim.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🛠️ WORKSHOP</span>
+        <h3>UI/UX Landing Page Workshop</h3>
+        <p>Dunia Coding Interactive Workshop</p>
+        <div class="cert-skills">
+            <span>UI/UX</span>
+            <span>Gamification</span>
+            <span>Landing Page</span>
+        </div>
+        <button onclick="openModal('', 'UI/UX Landing Page Workshop - Dunia Coding', 'Workshop interaktif mendesain antarmuka (UI/UX) landing page yang menarik, menyertakan elemen gamifikasi untuk meningkatkan pengalaman pengguna.')">View Details</button>
+    </div>
+
+    <div class="cert-card content">
+        <span class="cert-badge">🚀 NO CODE</span>
+        <h3>Build Website Without Coding</h3>
+        <p>Dunia Coding #100</p>
+        <div class="cert-skills">
+            <span>No-Code</span>
+            <span>CMS</span>
+            <span>Website</span>
+        </div>
+        <button onclick="openModal('', 'Build Website Without Coding - Dunia Coding #100', 'Eksplorasi pembuatan website secara instan dan efisien tanpa perlu menuliskan baris kode menggunakan platform CMS modern.')">View Details</button>
+    </div>
+</div>
+
+    </div>
+</div>
+
+<!-- FEATURED PROJECTS -->
+
+        <!-- ===================================================
+           REVISI UTUH HALAMAN 4: FEATURED PROJECTS (2 HALAMAN ANGKA)
+           =================================================== -->
+        <div id="projects" class="page">
+            <div class="sub-page-container">
+                
+                <!-- PROJECTS - HALAMAN 1 (Proyek Rekayasa Perangkat Lunak / IT) -->
+                <div id="projects-p1" class="sub-page active-sub-page">
+                    <h2><span>03.</span> Featured Projects — Software & Web (Hal 1)</h2>
+                    <div class="grid-container">
+                        
+                        <!-- Proyek 1 -->
+                        <div class="cert-card">
+                            <div class="cert-info">
+                                <h3 style="color: #00f2fe;">Interactive Portfolio SPA v2</h3>
+                                <p style="margin: 10px 0; font-size: 0.88rem; color: #cbd5e1;">
+                                    Sistem portofolio digital interaktif berbasis arsitektur Single Page Application. Dioptimasi secara mandiri menggunakan transisi CSS modern dan logika modul Javascript lokal agar responsif di HP dan laptop.
+                                </p>
+                                <a href="#" class="btn" style="margin-top: 5px;">View Architecture</a>
+                                <a href="https://aliakbar044q-sys.github.io/portofolio-Ali_Akbar/" class="btn" style="margin-top: 5px;" target="_blank">View Live Demo</a>
+                            </div>
+                        </div>
+
+                        <!-- Proyek 2 -->
+                        <div class="cert-card">
+                            <div class="cert-info">
+                                <h3 style="color: #00f2fe;">Visitor Counter System</h3>
+                                <p style="margin: 10px 0; font-size: 0.88rem; color: #cbd5e1;">
+                                    Sistem pelacakan data lalu lintas dan counter pengunjung lokal untuk menguji fungsionalitas manipulasi DOM pada script Javascript dasar.
+                                </p>
+                                <a href="#" class="btn" style="margin-top: 5px;">View Source</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- PROJECTS - HALAMAN 2 (Proyek Vokasional Fisik, Listrik & Perangkat Keras) -->
+                <div id="projects-p2" class="sub-page">
+                    <h2><span>03.</span> Featured Projects — Hardware & Electrical (Hal 2)</h2>
+                    <div class="grid-container">
+                        
+                        <!-- Proyek 3 -->
+                        <div class="cert-card">
+                            <div class="cert-info">
+                                <h3 style="color: #00f2fe;">Instalasi Listrik Penerangan Bangunan</h3>
+                                <p style="margin: 10px 0; font-size: 0.88rem; color: #cbd5e1;">
+                                    Implementasi pengawatan panel distribusi, perencanaan sirkuit jalur kabel saklar, dan pemasangan instalasi daya listrik bangunan sederhana berdasarkan standar kompetensi BLK 2026.
+                                </p>
+                                <span style="font-size: 0.75rem; color: #94a3b8; font-family: 'Share Tech Mono', monospace;">// BALAI LATIHAN KERJA PROJECT</span>
+                            </div>
+                        </div>
+
+                        <!-- Proyek 4 -->
+                        <div class="cert-card">
+                            <div class="cert-info">
+                                <h3 style="color: #00f2fe;">Custom PC Assembly & Tuning</h3>
+                                <p style="margin: 10px 0; font-size: 0.88rem; color: #cbd5e1;">
+                                    Merancang bangunan komputer kustom, melakukan manajemen tata letak kabel internal case, optimalisasi manajemen suhu udara komputer, dan penyelesaian masalah kegagalan perangkat keras (Hardware fault isolation).
+                                </p>
+                                <span style="font-size: 0.75rem; color: #94a3b8; font-family: 'Share Tech Mono', monospace;">// HARDWARE SUPPORT LAB</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Tombol Paginasi 2 Angka Bulat di Bawah Menu Projects -->
+            <div class="sub-pagination">
+                <button class="sub-page-btn active-btn" onclick="changeSubPage('projects', 1, this)">1</button>
+                <button class="sub-page-btn" onclick="changeSubPage('projects', 2, this)">2</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle" style="color: #00f2fe; margin-bottom: 15px; font-family: 'Share Tech Mono', monospace;">Judul Sertifikat</h2>
+            <img id="modalImg" class="cert-preview" src="" alt="Sertifikat Preview">
+            <p id="modalDescription" style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; margin-top: 15px; text-align: justify;">Deskripsi Detail.</p>
+            <button onclick="closeModal()" style="margin-top: 25px; padding: 10px 20px; background: #ef4444; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; width: auto; display: inline-block;">Kembali</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Developed by Ali Akbar • IT Universitas Sapta Mandiri</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // 1. Sembunyikan semua halaman terlebih dahulu
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // 2. Hapus status aktif pada semua menu navigasi
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.classList.remove('active-nav');
+            });
+
+            // 3. Tampilkan halaman yang diklik
+            document.getElementById(pageId).classList.add('active');
+
+            // 4. Beri tanda aktif pada menu yang sedang dibuka
+            if(pageId === 'home') document.getElementById('nav-home').classList.add('active-nav');
+            if(pageId === 'about') document.getElementById('nav-about').classList.add('active-nav');
+            if(pageId === 'certs') document.getElementById('nav-certs').classList.add('active-nav');
+            if(pageId === 'projects') document.getElementById('nav-projects').classList.add('active-nav');
+        }
+
+        function switchSubTab(event, subId) {
+            // 1. Sembunyikan semua konten sub-tab di dalam Home
+            const contents = document.querySelectorAll('.sub-content');
+            contents.forEach(content => content.classList.remove('active-content'));
+
+            // 2. Hapus status aktif dari semua tombol sub-tab
+            const buttons = document.querySelectorAll('.sub-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active-sub'));
+
+            // 3. Tampilkan sub-konten yang dipilih dan aktifkan tombolnya
+            document.getElementById('sub-' + subId).classList.add('active-content');
+            event.currentTarget.classList.add('active-sub');
+        }
+
+        /* Fungsi Baru: Untuk Mengatur Perpindahan Angka Halaman (1, 2, 3) */
+        function changeSubPage(sectionId, pageNum, buttonElement) {
+            const parentSection = document.getElementById(sectionId);
+            
+            // Sembunyikan semua sub-halaman di dalam section ini
+            const subPages = parentSection.querySelectorAll('.sub-page');
+            subPages.forEach(page => {
+                page.classList.remove('active-sub-page');
+            });
+
+            // Matikan warna aktif tombol angka di bawah
+            const paginationButtons = parentSection.querySelectorAll('.sub-page-btn');
+            paginationButtons.forEach(btn => {
+                btn.classList.remove('active-btn');
+            });
+
+            // Tampilkan sub-halaman yang dipilih dan aktifkan tombol angkanya
+            document.getElementById(`${sectionId}-p${pageNum}`).classList.add('active-sub-page');
+            buttonElement.classList.add('active-btn');
+        }
+
+
+/* ========================= */
+/* CATEGORY SYSTEM */
+/* ========================= */
+
+function showCategory(categoryId, element) {
+    // 1. Sembunyikan semua kategori sertifikat
+    const categories = document.querySelectorAll('.cert-category');
+    categories.forEach(category => {
+        category.classList.remove('active-category');
+    });
+
+    // 2. Hapus status active dari semua tombol tab
+    const tabs = document.querySelectorAll('.vault-tab');
+    tabs.forEach(tab => {
+        tab.classList.remove('active-tab');
+    });
+
+    // 3. Tampilkan kategori yang dipilih
+    const activeCategory = document.getElementById(categoryId);
+    if (activeCategory) {
+        activeCategory.classList.add('active-category');
+    }
+
+    // 4. Tambahkan status active ke tombol yang sedang diklik
+    element.classList.add('active-tab');
+}
+
+// Fungsi Modal (Placeholder jika ingin menampilkan gambar sertifikat pop-up)
+function openModal(imageSrc, title, description) {
+    const modal = document.getElementById('certModal');
+    
+    document.getElementById('modalImg').src = imageSrc;
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalDescription').innerText = description;
+    
+    modal.style.display = 'flex'; // Menampilkan modal
+}
+
+function closeModal() {
+    const modal = document.getElementById('certModal');
+    modal.style.display = 'none'; // Menyembunyikan modal kembali
+}
+
+    </script>
+</body>
+</html>
